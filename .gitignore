@@ -1,3 +1,7 @@
 .DS_Store
 vendor/*
 composer.lock
+export/*
+packages/*
+public/*
+source/*
