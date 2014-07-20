@@ -85,8 +85,9 @@ class Installer {
 			// see if the directory is essentially empty
 			$files = scandir($path);
 			foreach ($files as $file) {
-				if (($file == "..") || ($file == ".") || ($file == ".gitkeep") || ($file == "README")) {
-					array_shift($files);
+				$ignore = array("..",".",".gitkeep","README",".DS_Store");
+				if (in_array($file,$ignore)) {
+					unset($files[$key]);
 				}
 			}
 			
