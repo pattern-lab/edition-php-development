@@ -82,16 +82,29 @@ class Installer {
 		
 		if ($fs->exists($path)) {
 			
-			Console::writeLine("<info>the path <path>".$path."</path> already exists. overwrite it with the contents of <path>".$packageName."</path>? Y/n > </info><nophpeol>");
-			$answer = strtolower(trim(fgets($stdin)));
-			fclose($stdin);
-			if ($answer == "y") {
-				Console::writeLine("<ok>contents of <path>".$path."</path> being overwritten...</ok>", false, true);
-				return false;
-			} else {
-				Console::writeLine("<warning>contents of <path>".$path."</path> weren't overwritten. some parts of the <path>".$packageName."</path> package may be missing...</warning>", false, true);
-				return true;
+			// see if the directory is essentially empty
+			$files = scandir($path);
+			foreach ($files as $file) {
+				if (($file == "..") || ($file == ".") || ($file == ".gitkeep") || ($file == "README")) {
+					array_shift($files);
+				}
 			}
+			
+			if (!empty($files)) {
+				$stdin = fopen("php://stdin", "r");
+				Console::writeLine("<info>the path</info> <path>".$path."</path> <info>already exists. overwrite it with the contents of</info> <path>".$packageName."</path><info>? Y/n > </info><nophpeol>");
+				$answer = strtolower(trim(fgets($stdin)));
+				fclose($stdin);
+				if ($answer == "y") {
+					Console::writeLine("<ok>contents of</ok> <path>".$path."</path> <ok>being overwritten...</ok>", false, true);
+					return false;
+				} else {
+					Console::writeLine("<warning>contents of</warning> <path>".$path."</path> <warning>weren't overwritten. some parts of the</warning> <path>".$packageName."</path> <warning>package may be missing...</warning>", false, true);
+					return true;
+				}
+			}
+			
+			return false;
 			
 		}
 		
