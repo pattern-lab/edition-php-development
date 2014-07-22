@@ -1,7 +1,6 @@
 {
 	"name":             "pattern-lab/framework-development-edition",
 	"description":      "The development edition of Pattern Lab. Allows one to clone all of the base Pattern Lab repos at once.",
-	"version":          "0.7.12",
 	"keywords":         ["pattern lab"],
 	"homepage":         "http://patternlab.io",
 	"license":          "MIT",
