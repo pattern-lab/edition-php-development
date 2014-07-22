@@ -31,6 +31,10 @@
 		"pattern-lab/core": "dev-dev",
 		"pattern-lab/patternengine-php-mustache": "dev-master",
 		"pattern-lab/starterkit-mustache-demo": "dev-master"
+	"extra": {
+		"branch-alias": {
+			"dev-master": "dev-dev"
+		}
 	},
 	"scripts": {
 		"pre-install-cmd": [
