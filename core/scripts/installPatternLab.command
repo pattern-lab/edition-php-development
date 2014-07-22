@@ -1,4 +1,5 @@
 #!/bin/sh
 DIR="$( cd "$( dirname "$0" )" && pwd )"
-php "$DIR/../bin/composer.phar" install
-php "$DIR/../console" -g
+cd "$DIR/../../"
+php "core/bin/composer.phar" install
+php "core/console" -g
