@@ -1,5 +1,5 @@
 {
-	"name":             "pattern-lab/framework-development-edition",
+	"name":             "pattern-lab/edition-development",
 	"description":      "The development edition of Pattern Lab. Allows one to clone all of the base Pattern Lab repos at once.",
 	"keywords":         ["pattern lab"],
 	"homepage":         "http://patternlab.io",
@@ -15,9 +15,9 @@
 		
 	],
 	"support": {
-		"issues":         "https://github.com/pattern-lab/patternlab-php/issues",
+		"issues":         "https://github.com/pattern-lab/edition-php-development/issues",
 		"wiki":           "http://patternlab.io/docs/",
-		"source":         "https://github.com/pattern-lab/patternlab-php/releases"
+		"source":         "https://github.com/pattern-lab/edition-php-development/releases"
 	},
 	"autoload": {
 		"psr-0": {
