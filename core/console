@@ -11,6 +11,7 @@
 use \PatternLab\Config;
 use \PatternLab\Console;
 use \PatternLab\Dispatcher;
+use \PatternLab\Timer;
 
 // check to see if json_decode exists. might be disabled in installs of PHP 5.5
 if (!function_exists("json_decode")) {
@@ -29,6 +30,9 @@ if (file_exists($baseDir."vendor/autoload.php")) {
 	print "please install pattern lab's dependicies by typing: php core/bin/composer.phar install...\n";
 	exit;
 }
+
+// start the timer
+Timer::start();
 
 // load the options
 Console::init();
