@@ -36,7 +36,7 @@ Config::init($baseDir);
 
 // initialize the dispatcher & note that the config has been loaded
 Dispatcher::init();
-Dispatcher::$instance->dispatch("config.configLoadEnd");
+Dispatcher::getInstance()->dispatch("config.configLoadEnd");
 
 // run the console
 Console::run();
