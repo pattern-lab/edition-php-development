@@ -149,12 +149,12 @@ class Installer {
 			Config::init($baseDir,false);
 			
 			// check directories
-			if (!is_dir(Config::$options["sourceDir"])) {
-				mkdir(Config::$options["sourceDir"]);
+			if (!is_dir(Config::getOption("sourceDir"))) {
+				mkdir(Config::getOption("sourceDir"));
 			}
 			
-			if (!is_dir(Config::$options["packagesDir"])) {
-				mkdir(Config::$options["packagesDir"]);
+			if (!is_dir(Config::getOption("packagesDir"))) {
+				mkdir(Config::getOption("packagesDir"));
 			}
 			
 		}
@@ -198,7 +198,7 @@ class Installer {
 			$extra     = $package->getExtra();
 			$type      = $package->getType();
 			$name      = $package->getName();
-			$path      = Config::$options["packagesDir"]."/".$name;
+			$path      = Config::getOption("packagesDir")."/".$name;
 			
 			// make sure we're only evaluating pattern lab packages
 			if (strpos($type,"patternlab-") !== false) {
@@ -211,17 +211,17 @@ class Installer {
 					
 					// move assets to the base directory
 					if (isset($extra["assets"]["baseDir"])) {
-						self::parseFileList($name,$path,Config::$options["baseDir"],$extra["assets"]["baseDir"]);
+						self::parseFileList($name,$path,Config::getOption("baseDir"),$extra["assets"]["baseDir"]);
 					}
 					
 					// move assets to the public directory
 					if (isset($extra["assets"]["publicDir"])) {
-						self::parseFileList($name,$path,Config::$options["publicDir"],$extra["assets"]["publicDir"]);
+						self::parseFileList($name,$path,Config::getOption("publicDir"),$extra["assets"]["publicDir"]);
 					}
 					
 					// move assets to the source directory
 					if (isset($extra["assets"]["sourceDir"])) {
-						self::parseFileList($name,$path,Config::$options["sourceDir"],$extra["assets"]["sourceDir"]);
+						self::parseFileList($name,$path,Config::getOption("sourceDir"),$extra["assets"]["sourceDir"]);
 					}
 					
 					// see if we need to modify the config
