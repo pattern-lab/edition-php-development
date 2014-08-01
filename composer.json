@@ -1,5 +1,5 @@
 {
-	"name":             "pattern-lab/framework-development-edition",
+	"name":             "pattern-lab/edition-development",
 	"description":      "The development edition of Pattern Lab. Allows one to clone all of the base Pattern Lab repos at once.",
 	"keywords":         ["pattern lab"],
 	"homepage":         "http://patternlab.io",
