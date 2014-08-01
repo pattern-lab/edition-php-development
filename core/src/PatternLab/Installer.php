@@ -62,4 +62,19 @@ class Installer {
 		
 	}
 	
+	/**
+	 * Run the PL tasks when a package is removed
+	 * @param  {Object}     a script event object from composer
+	 */
+	public static function prePackageUninstall(Event $event) {
+		
+		// make sure pattern lab has been loaded
+		if (class_exists("\PatternLab\Config")) {
+			
+			InstallerUtil::prePackageUninstallCmd($event);
+			
+		}
+		
+	}
+	
 }
