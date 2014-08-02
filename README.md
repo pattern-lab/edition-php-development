@@ -61,7 +61,7 @@ On GitHub you can fork the package you want to modify. You must create a new bra
 
 In `composer.json` you need to add or update the `repositories` section to point at your forked repository for a package:
 
-   "repositories": [
+    "repositories": [
         {
             "type": "vcs",
             "url": "https://github.com/your-name/patternengine-php-mustache"
