@@ -43,6 +43,16 @@ for each package. The list of packages included in the Development Edition and t
 
 If you add another Pattern Lab package (e.g. plug-in, StarterKit, etc.) you must also make sure to update the origin for its `dev` branch.
 
+### 4. Run Generate
+
+To generate Pattern Lab for the first time and make sure everything was installed correctly type:
+
+    php core/console --generate
+
+To list all available commands type:
+
+    php core/console --help
+
 ## Adding a New Package
 
 To add a new package to your version of the Development Edition type:
