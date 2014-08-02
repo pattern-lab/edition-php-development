@@ -29,8 +29,8 @@
 		"php": ">=5.3.6",
 		"pattern-lab/core": "dev-dev",
 		"pattern-lab/patternengine-php-mustache": "dev-dev",
-		"pattern-lab/styleguidekit-mustache-default": "dev-dev",
-		"pattern-lab/starterkit-mustache-demo": "dev-dev"
+		"pattern-lab/starterkit-mustache-demo": "dev-dev",
+		"pattern-lab/styleguidekit-mustache-default": "dev-dev"
 	},
 	"scripts": {
 		"pre-install-cmd": [
