@@ -22,6 +22,8 @@ Use Composer's `create-project` feature to install the Development Edition into 
     cd install/location/
     composer create-project pattern-lab/edition-development your-project-name
 
+**Important:** When asked `Do you want to remove the existing VCS (.git, .svn..) history?` answer `n`.
+
 This will create a directory called `your-project-name`. It will also install Pattern Lab's default folder structure as well as core, its dependencies, and the select packages as separate Git clones.
 
 ### 3. Update Git Remotes
