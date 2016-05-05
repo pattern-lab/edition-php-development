@@ -106,4 +106,15 @@ class Installer {
 		
 	}
 	
+	/**
+	 * Make sure certain things are set-up before running composer's install
+	 * @param  {Object}     a script event object from composer
+	 */
+	public static function postUpdateCmd(Event $event) {
+			
+			file_put_contents("command.txt", "postUpdate\n", FILE_APPEND);
+			//InstallerUtil::preInstallCmd($event);
+		
+	}
+	
 }
