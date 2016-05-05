@@ -18,7 +18,7 @@ use \PatternLab\InstallerUtil;
 
 class Installer {
 	
-	protected static installerInfo = array("suggestedStarterKits" => array(), "patternLabPackages" => array());
+	protected static $installerInfo = array("suggestedStarterKits" => array(), "patternLabPackages" => array());
 	
 	/**
 	 * Get the package info from each patternlab-* package's composer.json
