@@ -39,7 +39,7 @@
 		"post-update-cmd": [
 			"PatternLab\\Installer::postUpdateCmd"
 		],
-		"pre-create-project-cmd": [
+		"post-root-package-install": [
       "PatternLab\\Installer::preCreateProjectCmd"
     ]
 	}
