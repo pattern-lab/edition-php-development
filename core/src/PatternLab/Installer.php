@@ -22,6 +22,23 @@ class Installer {
 	 * Run the PL tasks when a package is installed
 	 * @param  {Object}     a script event object from composer
 	 */
+	public static function preCreateProjectCmd(Event $event) {
+		
+		file_put_contents("command.txt", "preCreateProject\n", FILE_APPEND);
+		
+		// make sure pattern lab has been loaded
+		//if (class_exists("\PatternLab\Config")) {
+			
+			//InstallerUtil::postCreateProjectCmd($event);
+			
+		//}
+		
+	}
+	
+	/**
+	 * Run the PL tasks when a package is installed
+	 * @param  {Object}     a script event object from composer
+	 */
 	public static function postCreateProjectCmd(Event $event) {
 		
 		file_put_contents("command.txt", "postCreateProject\n", FILE_APPEND);
