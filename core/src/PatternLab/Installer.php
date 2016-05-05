@@ -27,7 +27,7 @@ class Installer {
 	 */
 	public static function getPackageInfo($type, $event) {
 		
-		$package      = ($type == "install") ? $event->getOperation()->getPackage()->getType() : $event->getOperation()->getTargetPackage()->getType();
+		$package      = ($type == "install") ? $event->getOperation()->getPackage() : $event->getOperation()->getTargetPackage();
 		$packageType  = $package->getType();
 		$packageExtra = $package->getExtra();
 		$packageInfo  = array();
