@@ -28,9 +28,9 @@
 	"require": {
 		"php": ">=5.3.6",
 		"pattern-lab/core": "dev-feature-installupdate",
-		"pattern-lab/patternengine-mustache": "dev-dev",
-		"pattern-lab/starterkit-mustache-demo": "dev-dev",
-		"pattern-lab/styleguidekit-mustache-default": "dev-dev"
+		"pattern-lab/patternengine-mustache": "dev-feature-installupdate",
+		"pattern-lab/starterkit-mustache-demo": "dev-feature-installupdate",
+		"pattern-lab/styleguidekit-mustache-default": "dev-feature-installupdate"
 	},
 	"scripts": {
 		"post-install-cmd": [
