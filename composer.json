@@ -27,7 +27,7 @@
 	"prefer-stable": true,
 	"require": {
 		"php": ">=5.3.6",
-		"pattern-lab/core": "dev-dev",
+		"pattern-lab/core": "dev-feature-installupdate",
 		"pattern-lab/patternengine-mustache": "dev-dev",
 		"pattern-lab/starterkit-mustache-demo": "dev-dev",
 		"pattern-lab/styleguidekit-mustache-default": "dev-dev"
@@ -40,7 +40,16 @@
 			"PatternLab\\Installer::postUpdateCmd"
 		],
 		"post-root-package-install": [
-      "PatternLab\\Installer::preCreateProjectCmd"
-    ]
+      "PatternLab\\Installer::getSuggestedStarterKits"
+    ],
+		"post-package-install": [
+			"PatternLab\\Installer::postPackageInstall"
+		],
+		"post-package-update": [
+			"PatternLab\\Installer::postPackageUpdate"
+		],
+		"pre-package-uninstall": [
+			"PatternLab\\Installer::prePackageUninstall"
+		]
 	}
 }
