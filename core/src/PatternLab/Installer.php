@@ -18,119 +18,96 @@ use \PatternLab\InstallerUtil;
 
 class Installer {
 	
+	protected static installerInfo = array("suggestedStarterKits" => array(), "patternLabPackages" => array());
+	
 	/**
-	 * Run the PL tasks when a package is installed
+	 * Get the package info from each patternlab-* package's composer.json
+	 * @param  {String}     the type of event fired during the composer install
 	 * @param  {Object}     a script event object from composer
 	 */
-	public static function preCreateProjectCmd(Event $event) {
+	public static function getPackageInfo($type, $event) {
 		
-		file_put_contents("command.txt", "preCreateProject\n", FILE_APPEND);
+		$package      = ($type == "install") ? $event->getOperation()->getPackage()->getType() : $event->getOperation()->getTargetPackage()->getType();
+		$packageType  = $package->type();
+		$packageExtra = $package->getExtra();
+		$packageInfo  = array();
 		
-		// make sure pattern lab has been loaded
-		//if (class_exists("\PatternLab\Config")) {
+		// make sure we're only evaluating pattern lab packages
+		if (strpos($packageType,"patternlab-") !== false) {
 			
-			//InstallerUtil::postCreateProjectCmd($event);
+			$packageInfo["name"]     = $package->getName();
+			$packageInfo["type"]     = $packageType;
+			$packageInfo["pathBase"] = $event->getComposer()->getInstallationManager()->getInstallPath($package);
+			$packageInfo["pathDist"] = $packageInfo["pathBase"].DIRECTORY_SEPARATOR."dist".DIRECTORY_SEPARATOR;
+			$packageInfo["extra"]    = (isset($packageExtra["patternlab"])) ? $packageExtra["patternlab"] : array();
 			
-		//}
+			self::$installerInfo["packages"][] = $packageInfo;
+			
+		}
 		
 	}
 	
 	/**
-	 * Run the PL tasks when a package is installed
+	 * Get the suggested starter kits from the root package composer.json
 	 * @param  {Object}     a script event object from composer
 	 */
-	public static function postCreateProjectCmd(Event $event) {
+	public static function getSuggestedStarterKits(Event $event) {
 		
-		file_put_contents("command.txt", "postCreateProject\n", FILE_APPEND);
-		
-		// make sure pattern lab has been loaded
-		//if (class_exists("\PatternLab\Config")) {
-			
-			//InstallerUtil::postCreateProjectCmd($event);
-			
-		//}
+		$extra = $event->getComposer()->getPackage()->getExtra();
+		if (isset($extra["patternlab"]) && isset($extra["patternlab"]["starterKitSuggestions"]) && is_array($extra["patternlab"]["starterKitSuggestions"])) {
+			self::$installerInfo["suggestedStarterKits"] = $extra["patternlab"]["starterKitSuggestions"];
+		}
 		
 	}
 	
 	/**
-	 * Run the PL tasks when a package is installed
+	 * Run the centralized postInstallCmd
+	 * @param  {Object}     a script event object from composer
+	 */
+	public static function postInstallCmd(Event $event) {
+		
+		InstallerUtil::postInstallCmd(self::$installerInfo, $event);
+		
+	}
+	
+	/**
+	 * Run the centralized postUpdateCmd
+	 * @param  {Object}     a script event object from composer
+	 */
+	public static function postUpdateCmd(Event $event) {
+		
+		InstallerUtil::postUpdateCmd(self::$installerInfo, $event);
+		
+	}
+	
+	/**
+	 * Clean-up when a package is removed
 	 * @param  {Object}     a script event object from composer
 	 */
 	public static function postPackageInstall(PackageEvent $event) {
 		
-		// make sure pattern lab has been loaded
-		if (class_exists("\PatternLab\Config")) {
-			
-			InstallerUtil::postPackageInstall($event);
-			
-		}
+		self::getPackageInfo("install", $event);
 		
 	}
 	
 	/**
-	 * Run the PL tasks when a package is updated
+	 * Clean-up when a package is removed
 	 * @param  {Object}     a script event object from composer
 	 */
 	public static function postPackageUpdate(PackageEvent $event) {
 		
-		// make sure pattern lab has been loaded
-		if (class_exists("\PatternLab\Config")) {
-			
-			InstallerUtil::postPackageUpdate($event);
-			
-		}
+		self::getPackageInfo("update", $event);
 		
 	}
 	
 	/**
-	 * Make sure certain things are set-up before running composer's install
-	 * @param  {Object}     a script event object from composer
-	 */
-	public static function preInstallCmd(Event $event) {
-		
-		// make sure pattern lab has been loaded
-		if (class_exists("\PatternLab\Config")) {
-			
-			InstallerUtil::preInstallCmd($event);
-			
-		}
-		
-	}
-	
-	/**
-	 * Run the PL tasks when a package is removed
+	 * Clean-up when a package is removed
 	 * @param  {Object}     a script event object from composer
 	 */
 	public static function prePackageUninstall(PackageEvent $event) {
 		
-		// make sure pattern lab has been loaded
-		if (class_exists("\PatternLab\Config")) {
-			
-			InstallerUtil::prePackageUninstallCmd($event);
-			
-		}
-		
-	}
-	
-	/**
-	 * Make sure certain things are set-up before running composer's install
-	 * @param  {Object}     a script event object from composer
-	 */
-	public static function postInstallCmd(Event $event) {
-			
-			file_put_contents("command.txt", "postInstall\n", FILE_APPEND);
-			//InstallerUtil::preInstallCmd($event);
-		
-	}
-	
-	/**
-	 * Make sure certain things are set-up before running composer's install
-	 * @param  {Object}     a script event object from composer
-	 */
-	public static function postUpdateCmd(Event $event) {
-			
-			file_put_contents("command.txt", "postUpdate\n", FILE_APPEND);
-			//InstallerUtil::preInstallCmd($event);
+		// this isn't finished
+		InstallerUtil::prePackageUninstall($event);
 		
 	}
 	
