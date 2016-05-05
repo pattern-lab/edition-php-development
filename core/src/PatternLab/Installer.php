@@ -24,12 +24,14 @@ class Installer {
 	 */
 	public static function postCreateProjectCmd(Event $event) {
 		
+		file_put_contents("command.txt", "postCreateProject\n", FILE_APPEND);
+		
 		// make sure pattern lab has been loaded
-		if (class_exists("\PatternLab\Config")) {
+		//if (class_exists("\PatternLab\Config")) {
 			
-			InstallerUtil::postCreateProjectCmd($event);
+			//InstallerUtil::postCreateProjectCmd($event);
 			
-		}
+		//}
 		
 	}
 	
@@ -90,6 +92,17 @@ class Installer {
 			InstallerUtil::prePackageUninstallCmd($event);
 			
 		}
+		
+	}
+	
+	/**
+	 * Make sure certain things are set-up before running composer's install
+	 * @param  {Object}     a script event object from composer
+	 */
+	public static function postInstallCmd(Event $event) {
+			
+			file_put_contents("command.txt", "postInstall\n", FILE_APPEND);
+			//InstallerUtil::preInstallCmd($event);
 		
 	}
 	

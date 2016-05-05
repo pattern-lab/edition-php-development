@@ -33,17 +33,11 @@
 		"pattern-lab/styleguidekit-mustache-default": "dev-dev"
 	},
 	"scripts": {
-		"pre-install-cmd": [
-			"PatternLab\\Installer::preInstallCmd"
+		"post-install-cmd": [
+			"PatternLab\\Installer::postInstallCmd"
 		],
-		"post-package-install": [
-			"PatternLab\\Installer::postPackageInstall"
-		],
-		"post-package-update": [
-			"PatternLab\\Installer::postPackageUpdate"
-		],
-		"pre-package-uninstall": [
-			"PatternLab\\Installer::prePackageUninstall"
-		]
+		"post-create-project-cmd": [
+      "PatternLab\\Installer::postCreateProjectCmd"
+    ]
 	}
 }
