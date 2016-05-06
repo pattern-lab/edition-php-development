@@ -37,7 +37,6 @@ class Installer {
 			
 			$packageInfo["name"]     = $package->getName();
 			$packageInfo["type"]     = $packageType;
-			//$packageInfo["pathBase"] = $package->getTargetDir();
 			$packageInfo["pathBase"] = $event->getComposer()->getInstallationManager()->getInstallPath($package);
 			$packageInfo["pathDist"] = $packageInfo["pathBase"].DIRECTORY_SEPARATOR."dist".DIRECTORY_SEPARATOR;
 			$packageInfo["extra"]    = (isset($packageExtra["patternlab"])) ? $packageExtra["patternlab"] : array();
