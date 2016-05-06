@@ -53,5 +53,14 @@
 		"pre-package-uninstall": [
 			"PatternLab\\Installer::prePackageUninstall"
 		]
+	},
+	"extra": {
+		"patternlab": {
+			"config": {
+				"lineageMatchKey": 4,
+				"foo": "baz",
+				"cleanPublic": "false"
+			}
+		}
 	}
 }
