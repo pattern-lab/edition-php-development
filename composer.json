@@ -40,8 +40,10 @@
 			"PatternLab\\Installer::postUpdateCmd"
 		],
 		"post-root-package-install": [
-      "PatternLab\\Installer::getSuggestedStarterKits"
-    ],
+			"PatternLab\\Installer::setProjectInstall",
+			"PatternLab\\Installer::getSuggestedStarterKits",
+			"PatternLab\\Installer::getConfigOverrides"
+		],
 		"post-package-install": [
 			"PatternLab\\Installer::postPackageInstall"
 		],

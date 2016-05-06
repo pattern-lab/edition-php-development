@@ -18,7 +18,20 @@ use \PatternLab\InstallerUtil;
 
 class Installer {
 	
-	protected static $installerInfo = array("suggestedStarterKits" => array(), "patternLabPackages" => array());
+	protected static $installerInfo = array("projectInstall" => false, "suggestedStarterKits" => array(), "configOverrides" => array(), "patternLabPackages" => array());
+	
+	/**
+	 * Get any config overrides that may exist for the edition
+	 * @param  {Object}     a script event object from composer
+	 */
+	public static function getConfigOverrides(Event $event) {
+		
+		$extra = $event->getComposer()->getPackage()->getExtra();
+		if (isset($extra["patternlab"]) && isset($extra["patternlab"]["config"]) && is_array($extra["patternlab"]["config"])) {
+			self::$installerInfo["configOverrides"] = $extra["patternlab"]["config"];
+		}
+		
+	}
 	
 	/**
 	 * Get the package info from each patternlab-* package's composer.json
@@ -108,6 +121,16 @@ class Installer {
 		
 		// this isn't finished
 		InstallerUtil::prePackageUninstall($event);
+		
+	}
+	
+	/**
+	 * Set the project install boolean to true
+	 * @param  {Object}     a script event object from composer
+	 */
+	public static function setProjectInstall(Event $event) {
+		
+		self::$installerInfo["projectInstall"] = true;
 		
 	}
 	
