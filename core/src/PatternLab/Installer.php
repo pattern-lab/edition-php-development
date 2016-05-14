@@ -119,8 +119,16 @@ class Installer {
 	 */
 	public static function prePackageUninstall(PackageEvent $event) {
 		
-		// this isn't finished
-		InstallerUtil::prePackageUninstallCmd($event);
+		// get package info
+		$package   = $event->getOperation()->getPackage();
+		$type      = $package->getType();
+		$name      = $package->getName();
+		$pathBase  = $event->getComposer()->getInstallationManager()->getInstallPath($package);
+		
+		// make sure we're only evaluating pattern lab packages
+		if (strpos($type,"patternlab-") !== false) {
+			InstallerUtil::prePackageUninstallCmd($name, $type, $pathBase);
+		}
 		
 	}
 	
