@@ -89,9 +89,7 @@ class Installer {
 	 */
 	public static function postUpdateCmd(Event $event) {
 		
-		if (!self::$packageRemove) {
-			InstallerUtil::postUpdateCmd(self::$installerInfo, $event);
-		}
+		InstallerUtil::postUpdateCmd(self::$installerInfo, $event);
 		
 	}
 	
