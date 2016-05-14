@@ -119,8 +119,24 @@ class Installer {
 	 */
 	public static function prePackageUninstall(PackageEvent $event) {
 		
+		// make sure the postUpdateCmd doesnt actually do anything
 		self::setPackagesRemove();
-		self::getPackageInfo("remove", $event);
+		
+		// get the basic package info
+		$package      = $event->getOperation()->getTargetPackage();
+		$packageType  = $package->getType();
+		$packageInfo  = array();
+		
+		// make sure we're only evaluating pattern lab packages. remove attributes related to them.
+		if (strpos($packageType,"patternlab-") !== false) {
+			
+			$packageInfo["name"]     = $package->getName();
+			$packageInfo["type"]     = $packageType;
+			$packageInfo["pathBase"] = $event->getComposer()->getInstallationManager()->getInstallPath($package);
+			
+			InstallerUtil::packageRemove($packageInfo);
+			
+		}
 		
 	}
 	
