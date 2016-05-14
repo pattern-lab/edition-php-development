@@ -18,7 +18,7 @@ use \PatternLab\InstallerUtil;
 
 class Installer {
 	
-	protected static $installerInfo = array("projectInstall" => false, "suggestedStarterKits" => array(), "configOverrides" => array(), "patternLabPackages" => array());
+	protected static $installerInfo = array("projectInstall" => false, "packagesRemove" => false, "suggestedStarterKits" => array(), "configOverrides" => array(), "patternLabPackages" => array());
 	
 	/**
 	 * Get any config overrides that may exist for the edition
@@ -40,7 +40,7 @@ class Installer {
 	 */
 	public static function getPackageInfo($type, $event) {
 		
-		$package      = ($type == "install") ? $event->getOperation()->getPackage() : $event->getOperation()->getTargetPackage();
+		$package      = ($type == "update") ? $event->getOperation()->getTargetPackage() : $event->getOperation()->getPackage();
 		$packageType  = $package->getType();
 		$packageExtra = $package->getExtra();
 		$packageInfo  = array();
@@ -89,7 +89,9 @@ class Installer {
 	 */
 	public static function postUpdateCmd(Event $event) {
 		
-		InstallerUtil::postUpdateCmd(self::$installerInfo, $event);
+		if (!self::$packageRemove) {
+			InstallerUtil::postUpdateCmd(self::$installerInfo, $event);
+		}
 		
 	}
 	
@@ -119,16 +121,17 @@ class Installer {
 	 */
 	public static function prePackageUninstall(PackageEvent $event) {
 		
-		// get package info
-		$package   = $event->getOperation()->getPackage();
-		$type      = $package->getType();
-		$name      = $package->getName();
-		$pathBase  = $event->getComposer()->getInstallationManager()->getInstallPath($package);
+		self::setPackageRemove();
+		self::getPackageInfo("remove", $event);
 		
-		// make sure we're only evaluating pattern lab packages
-		if (strpos($type,"patternlab-") !== false) {
-			InstallerUtil::prePackageUninstallCmd($name, $type, $pathBase);
-		}
+	}
+	
+	/**
+	 * Set the packages remove boolean to true
+	 */
+	public static function setPackagesRemove() {
+		
+		self::$installerInfo["packagesRemove"] = true;
 		
 	}
 	
