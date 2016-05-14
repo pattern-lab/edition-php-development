@@ -123,7 +123,7 @@ class Installer {
 		self::setPackagesRemove();
 		
 		// get the basic package info
-		$package      = $event->getOperation()->getTargetPackage();
+		$package      = $event->getOperation()->getPackage();
 		$packageType  = $package->getType();
 		$packageInfo  = array();
 		
