@@ -119,7 +119,7 @@ class Installer {
 	 */
 	public static function prePackageUninstall(PackageEvent $event) {
 		
-		self::setPackageRemove();
+		self::setPackagesRemove();
 		self::getPackageInfo("remove", $event);
 		
 	}
