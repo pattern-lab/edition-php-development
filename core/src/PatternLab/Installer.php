@@ -120,7 +120,7 @@ class Installer {
 	public static function prePackageUninstall(PackageEvent $event) {
 		
 		// this isn't finished
-		InstallerUtil::prePackageUninstall($event);
+		InstallerUtil::prePackageUninstallCmd($event);
 		
 	}
 	
