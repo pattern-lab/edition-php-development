@@ -24,6 +24,7 @@
 		}
 	},
 	"minimum-stability": "dev",
+	"prefer-stable": true,
 	"require": {
 		"php": ">=5.3.6",
 		"pattern-lab/core": "dev-dev",
