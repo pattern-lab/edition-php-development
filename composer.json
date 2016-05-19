@@ -23,6 +23,7 @@
 			"PatternLab":   "core/src/"
 		}
 	},
+	"minimum-stability": "dev",
 	"require": {
 		"php": ">=5.3.6",
 		"pattern-lab/core": "dev-dev",
