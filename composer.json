@@ -26,11 +26,11 @@
 	"minimum-stability": "dev",
 	"prefer-stable": true,
 	"require": {
-		"php": ">=5.3.6",
-		"pattern-lab/core": "dev-dev",
-		"pattern-lab/patternengine-mustache": "dev-dev",
-		"pattern-lab/starterkit-mustache-demo": "dev-dev",
-		"pattern-lab/styleguidekit-mustache-default": "dev-dev"
+		"php": ">=5.4",
+		"pattern-lab/core": "dev-develop as 2.8.11",
+		"pattern-lab/patternengine-mustache": "dev-develop as 2.1.0",
+		"pattern-lab/starterkit-mustache-demo": "dev-develop as 4.0.2",
+		"pattern-lab/styleguidekit-mustache-default": "dev-develop as 3.1.0"
 	},
 	"scripts": {
 		"post-install-cmd": [
